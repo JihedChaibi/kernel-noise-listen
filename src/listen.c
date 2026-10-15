@@ -415,7 +415,14 @@ int main(int argc, char **argv)
     double metric_time = start, draw_time = start, quit_time = 0;
 
     if (ui) {
-        fprintf(stderr, "\033[?25l\033[32mKERNEL NOISE // LISTEN v0.1\033[0m\n");
+        fprintf(stderr, "\033[?25l\033[32m");
+        fprintf(stderr,
+        "  _  __                    _ _   _       _                _ _     _             \n"
+        " | |/ /___ _ __ _ __   ___| | \\ | | ___ (_)___  ___      | (_)___| |_ ___ _ __  \n"
+        " | ' // _ \\ '__| '_ \\ / _ \\ |  \\| |/ _ \\| / __|/ _ \\_____| | / __| __/ _ \\ '_ \\ \n"
+        " | . \\  __/ |  | | | |  __/ | |\\  | (_) | \\__ \\  __/_____| | \\__ \\ ||  __/ | | |\n"
+        " |_|\\_\\___|_|  |_| |_|\\___|_|_| \\_|\\___/|_|___/\\___|     |_|_|___/\\__\\___|_| |_|\n");
+        fprintf(stderr, " v0.2\n""\033[0m\n");   // reset color
         draw_menu(mode, volume, 0);
     }
 
