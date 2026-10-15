@@ -1,0 +1,10 @@
+.build/
+__pycache__/
+*.wav
+*.raw
+*.pcm
+
+# Editor and operating-system files
+*.swp
+*.swo
+.DS_Store
