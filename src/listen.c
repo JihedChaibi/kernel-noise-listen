@@ -278,9 +278,9 @@ static void draw_menu(int mode, double volume, int update)
             fputs("  ", stderr);
 
         if (i == mode)
-            fprintf(stderr, "\033[1m%d %s\033[22m", i + 1, mode_names[i]);
+            fprintf(stderr, "\033[1;31m%d. %s\033[0m", i + 1, mode_names[i]);
         else
-            fprintf(stderr, "%d %s", i + 1, mode_names[i]);
+            fprintf(stderr, "%d. %s", i + 1, mode_names[i]);
     }
 
     /* 100% is the maximum instrument gain (0.4), not system volume.

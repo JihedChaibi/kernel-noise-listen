@@ -167,32 +167,32 @@ class DemoTests(unittest.TestCase):
         try:
             read_for(.4)
             self.assertIn(
-                b"\x1b[1m4 mix\x1b[22m | +/- volume "
-                b"\x1b[2m(38%)\x1b[22m",
+                b"1. cpu  2. irq  3. scheduler  \x1b[1;31m4. mix\x1b[0m"
+                b" | +/- volume \x1b[2m(38%)\x1b[22m",
                 transcript,
             )
 
             os.write(master, b"1+")
             read_for(.3)
             self.assertIn(
-                b"\x1b[1m1 cpu\x1b[22m  2 irq  3 scheduler  4 mix"
+                b"\x1b[1;31m1. cpu\x1b[0m  2. irq  3. scheduler  4. mix"
                 b" | +/- volume \x1b[2m(44%)\x1b[22m",
                 transcript,
             )
 
-            for key, label in ((b"2", b"2 irq"),
-                               (b"3", b"3 scheduler"),
-                               (b"4", b"4 mix")):
+            for key, label in ((b"2", b"2. irq"),
+                            (b"3", b"3. scheduler"),
+                            (b"4", b"4. mix")):
                 os.write(master, key)
                 read_for(.12)
-                self.assertIn(b"\x1b[1m" + label + b"\x1b[22m", transcript)
+                self.assertIn(b"\x1b[1;31m" + label + b"\x1b[0m", transcript)
 
             # 'm' wraps from mix back to CPU; '-' restores the initial gain.
             position = len(transcript)
             os.write(master, b"m-")
             read_for(.2)
             self.assertIn(
-                b"\x1b[1m1 cpu\x1b[22m  2 irq  3 scheduler  4 mix"
+                b"\x1b[1;31m1. cpu\x1b[0m  2. irq  3. scheduler  4. mix"
                 b" | +/- volume \x1b[2m(38%)\x1b[22m",
                 transcript[position:],
             )
